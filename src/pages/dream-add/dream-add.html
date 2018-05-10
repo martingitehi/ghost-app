@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      <b>{{mode}} dream</b>
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button clear color="white" (click)="saveDream()">
+        Save
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding no-bounce fixed has-bouncing="false">
+  <ion-card class="edgeless">
+    <ion-card-header>
+      <ion-item>
+        <ion-label floating>Dream Title</ion-label>
+        <ion-input type="text" [(ngModel)]="dream.title" maxlength="500" required></ion-input>
+      </ion-item>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label floating>Dream Category</ion-label>
+        <ion-select name="account" [selectOptions]="selectOptions" *ngIf="categories">
+          <ion-option *ngFor="let category of categories; let i=index" value="{{category}}" [selected]="i==0">{{category}}</ion-option>
+        </ion-select>
+        <ion-input type="text" [(ngModel)]="dream.category" maxlength="500" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Dream Title</ion-label>
+        <ion-textarea type="text" [(ngModel)]="dream.description" maxlength="20000" required rows="10" cols="20"></ion-textarea>
+      </ion-item>
+    </ion-card-content>
+
+    <ion-item no-lines *ngIf="dream.tags">
+      <b>Tags in this dream</b>
+      <span *ngFor="let tag of dream.tags">
+        <ion-badge mode="ios" color="light">
+          {{tag}}
+        </ion-badge>
+      </span>
+      <button ion-button item-end clear icon-only (click)="addTag()">
+        <ion-icon name="add" color="dark"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-card>
+</ion-content>

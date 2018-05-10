@@ -1,0 +1,53 @@
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>
+      <b>Me</b>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item no-lines>
+    <h2>
+      <b>Ghost Telletubby</b>
+    </h2>
+    <small>{{today | date:'EEE d MMM, yyyy'}}</small>
+    <ion-avatar item-start style="position:relative;">
+      <img src="assets/imgs/avatar.png" style="overflow:hidden!important;display:block;">
+    </ion-avatar>
+  </ion-item>
+<!-- 
+  <ion-item no-lines style="text-align:center;">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4>
+          <h3>
+            <b>{{dreams.length}}</b>
+          </h3>
+          <small>Dreams</small>
+        </ion-col>
+        <ion-col col-4>
+          <h3>
+            <b>{{categories.length}}</b>
+          </h3>
+          <small>Categories</small>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item> -->
+
+  <ion-list-header>
+    DREAM CATEGORIES
+  </ion-list-header>
+
+  <ion-list>
+    <ion-item *ngFor="let category of clusters">
+      {{category.category}}
+      <span item-end>{{category.dreams}}</span>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,8 @@
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let option of options" (tap)="optionTapped(product, option.id)">
+      <b>{{option.text}}</b>
+    </ion-item>
+  </ion-list>
+</ion-content>

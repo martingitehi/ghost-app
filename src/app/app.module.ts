@@ -1,39 +1,50 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
+import { GhostDiary } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { AddDream } from '../pages/dream-add/dream-add';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { FIREBASE_CONFIG } from '../config/FIREBASE_CONFIG';
+import { LocalServices } from '../services/local.services';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { ProfilePage } from '../pages/profile/profile';
+import { PopoverOptionsPageModule } from '../pages/popover-options/popover-options.module';
+
 @NgModule({
   declarations: [
-    MyApp,
+    GhostDiary,
     AboutPage,
-    ContactPage,
+    AddDream,
     HomePage,
+    ProfilePage,
     TabsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    PopoverOptionsPageModule,
+    IonicModule.forRoot(GhostDiary)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    GhostDiary,
     AboutPage,
-    ContactPage,
+    AddDream,
+    ProfilePage,
     HomePage,
     TabsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    NativeStorage,
+    LocalServices,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -1,17 +1,52 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+  <ion-navbar color="secondary">
+    <ion-title><b>Dreams</b></ion-title>
+    <ion-buttons end>
+      <button ion-button clear icon-only color="white" (click)="addDream()">
+        <ion-icon name="add" color="white"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content no-bounce>
+  <div *ngIf="dreams">
+    <ion-list>
+      <ion-card *ngFor="let dream of dreams" class="edgeless">
+        <ion-item no-lines>
+          <ion-avatar item-start>
+            <img src="assets/imgs/avatar.png" alt="">
+          </ion-avatar>
+          {{dream?.title}} <br>
+          by Ghost
+          <button clear ion-button (click)="editDream(dream)" icon-only item-end>
+            <ion-icon name="create" color="dark"></ion-icon>
+          </button>
+        </ion-item>
+        <ion-card-content>
+          <p>
+            {{dream.description.substr(0,200) + '...'}}
+          </p>
+        </ion-card-content>
+        <ion-item no-lines *ngIf="dream.tags">
+          <span *ngFor="let tag of dream.tags">
+            <ion-badge mode="ios" color="light">
+              {{tag}}
+            </ion-badge>
+          </span>
+        </ion-item>
+      </ion-card>
+    </ion-list>
+  </div>
+
+  <div *ngIf="!dreams" class="centered">
+    <ion-item no-lines center text-wrap>
+     Ghost,you have no dreams saved. Wanna add some?
+    </ion-item>
+    <ion-item no-lines>
+      <button ion-button block large color="secondary" icon-left (click)="addDream()">
+          <ion-icon name="add" color="white"></ion-icon>
+        Add Dream</button>
+    </ion-item>
+  </div>
 </ion-content>
