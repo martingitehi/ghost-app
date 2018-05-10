@@ -10,7 +10,6 @@ import { AddDream } from '../dream-add/dream-add';
 })
 export class PopoverOptionsPage {
   options: any[];
-  product: any;
   dreams: any[] = [];
 
   constructor(public navParams: NavParams,
@@ -19,7 +18,6 @@ export class PopoverOptionsPage {
     private toastCtrl: ToastController,
     private navCtrl: NavController) {
     this.dreams = JSON.parse(localStorage.getItem('dreams'));
-    this.product = this.navParams.get('product_info');
     this.options = [
       { id: 1, text: 'Delete' },
       { id: 2, text: 'Edit' }

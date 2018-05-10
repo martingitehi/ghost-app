@@ -12,7 +12,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 export class HomePage {
   dreams: Dream[] = [];
 
-  constructor(public navCtrl: NavController, private local: LocalServices, private storage: NativeStorage, popoverCtrl: PopoverController) {
+  constructor(public navCtrl: NavController, private local: LocalServices, private storage: NativeStorage, private popoverCtrl: PopoverController) {
 
     //add some starters
     this.dreams = [
@@ -58,24 +58,31 @@ export class HomePage {
   }
 
   editDream(dream: Dream) {
-  
+    this.popoverCtrl.create('PopoverOptionsPage')
   }
 
-  getDreams(){
+  getDreams() {
     this.dreams = this.local.getDreams()
   }
 
-  searchDream(filter:string) {
-    return this.dreams.filter(dreams=>{
+  searchDream(filter: string) {
+    return this.dreams.filter(dreams => {
       return dreams.category == filter;
     })
+  }
+
+  doRefresh(refresher) {
+    setTimeout(() => {
+      this.getDreams()
+      refresher.complete();
+    }, 3000);
   }
 
   addDream() {
     this.local.presentModal(AddDream);
   }
 
-  ionViewDidLoad(){
+  ionViewDidLoad() {
     this.getDreams()
   }
 
