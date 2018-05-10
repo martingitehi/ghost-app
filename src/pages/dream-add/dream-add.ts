@@ -39,6 +39,7 @@ export class AddDream {
       localStorage.setItem('dreams', JSON.stringify(dreams))
     }
     this.local.presentToast('Dream has been added', 'bottom', false, 3000)
+    this.navCtrl.pop()
   }
 
   addTag() {
